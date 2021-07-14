@@ -1,0 +1,38 @@
+create database attendance_system;
+use attendance_system;
+create table login_info(
+usr_name varchar(50) primary key,
+name varchar(50),
+gender varchar(10),
+email varchar(50),
+address varchar(100),
+mobile varchar(14),
+passwd varchar(50));
+
+create table course_info(
+course_name varchar(50) primary key,
+description varchar(100),
+c_date DATE DEFAULT CURRENT_TIMESTAMP,
+c_time TIME DEFAULT CURRENT_TIMESTAMP);
+
+create table student_info(
+roll_no int auto_increment primary key,
+stu_name varchar(50),
+gender varchar(10),
+father varchar(50),
+course_name varchar(50),
+mobile varchar(15),
+address varchar(100),
+state varchar(20),
+regi_date DATE DEFAULT CURRENT_TIMESTAMP,
+regi_time TIME DEFAULT CURRENT_TIMESTAMP,
+foreign key(course_name) references course_info(course_name) 
+);
+
+create table attendance_info(
+roll_no int,
+date int,
+month int,
+year int,
+iss_present boolean,
+foreign key(roll_no) references student_info(roll_no));
